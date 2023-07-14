@@ -12,10 +12,10 @@ h1 {
 
 .items {
     width: 1000px;
-    margin: auto;
+    margin: 1rem auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 5rem;
+    gap: 4rem;
 }
 
 .card_header {
