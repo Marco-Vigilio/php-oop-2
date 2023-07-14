@@ -14,7 +14,7 @@ class Prodotti extends Categorie{
     }
 }
 
-class Categorie {
+class Categorie{
     public $nomeCategoria;
 
     public function __construct(string $_nomeCategoria){
@@ -22,8 +22,12 @@ class Categorie {
     }
 }
 
-class Articoli {
+class Tipologia {
+    public $nomeTipologia;
 
+    public function __construct(string $_nomeTipologia){
+        $this->tipologia = $_nomeTipologia;
+    }
 }
 
 $categoria = [
