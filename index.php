@@ -58,15 +58,18 @@ class Cibo extends Prodotti{
     public function __construct(string $_immagine, string $_titolo, string $_prezzo,  Categorie $_categoria, Tipologie $_tipologia, string $_prodotto_il, string $_scadenza, string $_calorie, string $_grassi){
         parent::__construct( $_immagine,  $_titolo,  $_prezzo,   $_categoria,  $_tipologia);
         $this->prodotto_il = $_prodotto_il;
-        $this->scadenza = $_scadenza;
+        //$this->getDataProduzione($_prodotto_il);
+        $this->getDataScadenza($_prodotto_il);
         //$this->scadenza = getDataScadenza($_prodotto_il);
         $this->calorie = $_calorie;
         $this->grassi = $_grassi;
     }
 
-    public getDataProduzione( string $_prodotto_il) : string{
-        $date=date_create($_prodotto_il);
-        return $date;
+    public function getDataScadenza( string $_prodotto_il){
+        $date=date_create("2013-03-15");
+        date_add($date,date_interval_create_from_date_string("40 days"));
+        echo date_format($date,"d-m-Y");
+        return $data;
     }
     /*
     public getDataScadenza ($_prodotto_il){
@@ -86,7 +89,6 @@ $tipologie = [
     new Tipologie("Accessorio"),
     new Tipologie("Cibo"),
     new Tipologie("Giocattolo"),
-    new Tipologie("Cuccia"),
 ];
 
 
@@ -99,7 +101,7 @@ $prodotti = [
     new Prodotti("https://source.unsplash.com/random/250x200?sig=".rand(0,100), "Tonno per gatti", "4€", $categorie[1], $tipologie[1]),
 
     new Giocattolo("https://source.unsplash.com/random/250x200?sig=".rand(0,100), "Osso di gomma", "2€", $categorie[0], $tipologie[2], "medium", "gomma"),
-    new Cibo("https://source.unsplash.com/random/250x200?sig=".rand(0,100), "Tonno per gatti", "4€", $categorie[1], $tipologie[1], "2013-03-15", "2013-03-20", "20%", "40%"),
+    new Cibo("https://source.unsplash.com/random/250x200?sig=".rand(0,100), "Tonno per gatti", "4€", $categorie[1], $tipologie[1], "2020/11/03", "2013-03-20", "20%", "40%"),
 ];
 
 ?>
@@ -144,9 +146,7 @@ $prodotti = [
                             <p>Calorie: <?php echo $prodotto->calorie;?></p>
                             <p>Grassi: <?php echo $prodotto->grassi;?></p>
                         </div>
-                        
-                        <p>Prodotto il: <?php echo $prodotto->prodotto_il;?></p>
-                        <p>Da consumarsi entro: <?php echo $prodotto->scadenza?></p>
+                        <p>Prodotto il: <?php echo $prodotto->prodotto_il; ?></p>
                     </div>
                     <?php }?>
                 </div>
@@ -157,3 +157,8 @@ $prodotti = [
     </div>
 </body>
 </html>
+
+<!--
+                        
+                        <p>Da consumarsi entro: <?php echo $prodotto->scadenza?></p>
+                    -->
